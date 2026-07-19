@@ -1,5 +1,13 @@
 # ExpressJSMongo
 
+# Tech Specification
+```
+1. Docker Desktop
+2. Express JS
+3. Mongo DB
+4. Mongo DB Express - UI
+5. AWS - SQS
+```
 # Clone project
 ```git clone ----```
 
