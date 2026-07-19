@@ -1,0 +1,29 @@
+services:
+  js-app:
+    build: .
+    ports:
+      - "3085:3000"
+    volumes:
+      - .:/app
+    tty: true
+    container_name: js-app
+  js-mongo-db:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  js-mongo-ui:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8071:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@js-mongo-db:27017/
+      ME_CONFIG_BASICAUTH_ENABLED: true
+      ME_CONFIG_BASICAUTH_USERNAME: mongoexpressuser
+      ME_CONFIG_BASICAUTH_PASSWORD: mongoexpresspass
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: true
+
