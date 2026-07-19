@@ -1,5 +1,8 @@
 # ExpressJSMongo
 
+# Clone project
+```git clone ----```
+
 # Start Docker
 
 ```docker-compose up```

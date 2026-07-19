@@ -2,6 +2,7 @@ import { Router } from "express";
 import { saveWeatherData } from "../controller/publishMessageControlller.js";
 import { saveWeatherForecastInMon, getWeatherForecastByCity } from "../controller/WeatherForecastController.js";
 
+import { saveClientDetails } from "../controller/ClientController.js";
 const router = Router();
 
 router.get("/health", (req, res) => {
@@ -13,7 +14,7 @@ router.get("/health", (req, res) => {
 router.post("/weather", saveWeatherData);
 router.post("/receive_weather", saveWeatherForecastInMon);
 router.get("/receive_weather/city=:cityName", getWeatherForecastByCity);
-// router.get("/user", getUser);
-// router.get("/user/:userId", getUserById);
+
+router.post("/client", saveClientDetails);
 
 export default router;

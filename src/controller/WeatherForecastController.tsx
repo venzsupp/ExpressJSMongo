@@ -5,11 +5,7 @@ import {getWeatherDataFromSqs} from "./consumeMessageController.js";
 
 
 const saveWeatherForecastInMon = async (request: Request, response: Response, next:NextFunction) => {
-
-    const url = process.env.MONGO_DB;
-    const db = process.env.DB_NAME;
-    // console.log(db);
-    
+  
     const msgFromSQS = await getWeatherDataFromSqs(request, response, next);
     console.log(msgFromSQS);
     const DBCon = await connect();
@@ -25,7 +21,6 @@ const saveWeatherForecastInMon = async (request: Request, response: Response, ne
 
 const getWeatherForecastByCity = async(request: Request, response: Response, next:NextFunction) => {
     const cityName = request.params.cityName;
-    console.log(cityName);
     const DBCon = await connect();
     const collection = DBCon?.collection("weather_forecast");
     
