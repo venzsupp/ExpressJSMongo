@@ -15,7 +15,7 @@ const saveClientDetails= async (request: Request, response: Response, next:NextF
     const DBCon = await connect();
     const collection = DBCon?.collection("clients");
     
-    const result = await collection?.insertOne(request);
+    const result = await collection?.insertOne(request.body);
 
      return response.status(200).json({ 
             success: true,
