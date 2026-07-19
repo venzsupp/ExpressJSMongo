@@ -22,7 +22,7 @@
 
 # APIs
 
-# Create WeatherForecast and pulish it to AWS SQS
+# Create WeatherForecast and publish it to AWS SQS
 ```
 http://localhost:3085/api/weather
 
@@ -30,5 +30,19 @@ Body: {
     "city":"Queenstown",
     "temperature":1
 }
+
+```
+
+# Save it to Mongo DB in bulk from AWS SQS in batch
+```
+http://localhost:3085/api/receive_weather - POST
+
+
+```
+
+# Get weather data based on city from Mongo DB
+```
+http://localhost:3085/api/receive_weather/city=christchurch - GET
+
 
 ```
