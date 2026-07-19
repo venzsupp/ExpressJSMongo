@@ -18,7 +18,7 @@
 # Start project
 ```docker exec -it js-app npm run dev```
 
-# Open borwser
+# Open borwser - to see Mongo DB UI presentation locally
 ```http://localhost:8071/```
 # Create database in Mongo DB 
 ```Datebase Name: mongo_db```
