@@ -49,3 +49,15 @@ http://localhost:3085/api/receive_weather/city=christchurch - GET
 
 
 ```
+
+# Save client data in Mongo DB
+
+```
+http://localhost:3085/api/client
+
+Body: {
+    "client_id":"HGJjkk",
+    "client_name":"Test Client"
+}
+
+```
