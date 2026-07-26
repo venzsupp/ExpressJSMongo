@@ -19,7 +19,9 @@ const getWeatherDataFromSqs = async(request: Request, response: Response, next:N
             console.log("No messages found in this poll.");
             return;
           }
-
+          // console.log('===res===');
+          // console.log(res);
+        const httpStatus = res.$metadata.httpStatusCode;
         const messageBodies = res.Messages.map(msg => {
             const parsedVal = JSON.parse(msg.Body);
             const {timestamp, ...restData} = parsedVal;
@@ -34,11 +36,14 @@ const getWeatherDataFromSqs = async(request: Request, response: Response, next:N
             // console.log(parseBody);
             return restData.data;
         });
-        
+        // console.log(res.$metadata.httpStatusCode);
+        // console.log(messageBodies);
         // const {timestamp, ...restData} = messageBodies;
         //   console.log('res.Messages');
         //   console.log(messageBodies);
-          return messageBodies;
+        const msgHttpStatus = {"messages": messageBodies, "httpStatus": httpStatus};
+        console.log(msgHttpStatus);
+        return msgHttpStatus;
         // for (const msg of res.Messages) {
         //     const body = JSON.parse(msg.Body);
         //     console.log(`Processing message sequence:`, body);

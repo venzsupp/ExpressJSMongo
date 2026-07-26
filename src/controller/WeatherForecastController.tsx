@@ -11,10 +11,14 @@ const saveWeatherForecastInMon = async (request: Request, response: Response, ne
     const DBCon = await connect();
     const collection = DBCon?.collection("weather_forecast");
 
-    const cityName = msgFromSQS.map(item => item.city);
+    const cityName = msgFromSQS?.messages?.map(item => item.city);
+// console.log(cityName);
+
     const CollectionData = await collection?.find({city: {$in:cityName}}).collation({ locale: "en", strength: 2 }).toArray();
     const collectionCity = CollectionData?.map(item => item.city);
-    const newMsgFromSQS = msgFromSQS?.filter(item => !collectionCity?.includes(item.city));
+    const newMsgFromSQS = msgFromSQS?.messages?.filter(item => !collectionCity?.includes(item.city));
+
+
     // const newMsg = msgFromSQS?.filter(item => {
     //   const kl = collectionCity?.find(dd => {
     //     // console.log(dd.city +'==='+ item.city);
@@ -39,7 +43,7 @@ const saveWeatherForecastInMon = async (request: Request, response: Response, ne
 
   }
 
-  return response.status(200).json({ 
+  return response.status(msgFromSQS?.httpStatus).json({ 
     success: true,
     result: resultMsg
   });
