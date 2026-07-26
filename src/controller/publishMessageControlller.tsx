@@ -22,11 +22,13 @@ const saveWeatherData = async(request: Request, response: Response, next:NextFun
             };
         const command = new SendMessageCommand({
             QueueUrl:  process.env.SQS_URL,
-            MessageBody: JSON.stringify({ data, timestamp: new Date() }),
+            MessageBody: JSON.stringify({ data }),
             // DelaySeconds: 0, // Optional: Delay message delivery
             MessageGroupId: 'ExpressAppGroup', 
             MessageDeduplicationId: Date.now().toString(), 
         });
+        console.log('command');
+        console.log(command);
         const awsClt = await awsClient();
         const res = await awsClt.send(command);
         return response.status(200).json({ 
