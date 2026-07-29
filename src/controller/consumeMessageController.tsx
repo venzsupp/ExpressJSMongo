@@ -12,7 +12,7 @@ const getWeatherDataFromSqs = async(request: Request, response: Response, next:N
             WaitTimeSeconds: 20,       // Long Polling: Waits up to 20s for messages to arrive
             VisibilityTimeout: 30,     // Locks messages for 30s so others don't read them
           };
-          /*
+          
         const awsClt = await awsClient();
         const res = await awsClt.send(new ReceiveMessageCommand(receiveParams));
         if (!res.Messages || res.Messages.length === 0) {
@@ -39,8 +39,8 @@ const getWeatherDataFromSqs = async(request: Request, response: Response, next:N
 
         const msgHttpStatus = {"messages": messageBodies, "httpStatus": httpStatus};
         console.log(msgHttpStatus);
-        */
-
+        
+/*
         const msgHttpStatus = [
             {
                 'name':'test name',
@@ -64,6 +64,7 @@ const getWeatherDataFromSqs = async(request: Request, response: Response, next:N
             }
         ];
         console.log(msgHttpStatus);
+        */
         // const newmesg = msgHttpStatus.filter(item => item.temperature > 5);
         // const newmesg = msgHttpStatus.some(item => item.name === 'mani'); // true if found and false not found
        // const newmesg = msgHttpStatus.every(item => item.name === 'mani'); // true if found and false not found
@@ -82,8 +83,8 @@ const getWeatherDataFromSqs = async(request: Request, response: Response, next:N
 
         // console.log(newmesg);
 
-       const res =  msgHttpStatus.findLast(item => item.name === 'ud');
-       console.log(res);
+    //    const res =  msgHttpStatus.findLast(item => item.name === 'ud');
+    //    console.log(res);
         // msgHttpStatus.reverse();
         
         // msgHttpStatus.sort((a,b) => a.temperature - b.temperature);
